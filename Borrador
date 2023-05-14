@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cctype>
+#include <algorithm>
+
+using namespace std;
+
+vector<string> leerPolinomio(string polinomio){
+    cout << "Introduce el polinomio " << polinomio << ": ";
+    string cadena;
+    getline(cin, cadena);
+    vector<string> partes;
+    string parte;
+    int pos = 1;
+    // Convertir a minusculas (se usa cctype)
+    for(int i = 0; i < cadena.length(); i++) {
+        cadena[i] = tolower(cadena[i]);
+    }
+    // Eliminar espacios
+    cadena.erase(remove_if(cadena.begin(), cadena.end(), [](char c) { return isspace(c); }), cadena.end()); 
+    //Agregar signo al inicio
+    if(cadena[0] == '+'){
+        cadena = cadena;
+    }
+    else if(cadena[0] != '-'){
+        cadena = "+" + cadena;
+    }
+    // Separar por signo y guardar en vector
+    while(pos!=cadena.size()){
+        if(cadena[pos]=='+' or cadena[pos]=='-'){
+            parte=cadena.substr(0,pos);
+            partes.push_back(parte);
+            cadena.erase(0,pos);
+            pos=1;  
+        }
+        else pos++;
+    }
+    partes.push_back(cadena);
+    return partes;
+}
+
+
+void leerNPolinomios(int n, vector<vector<string>>& polinomios) {
+    for (int i = 0; i < n; i++) {
+        vector<string> polinomio = leerPolinomio(to_string(i+1));
+        polinomios.push_back(polinomio);
+    }
+}
+
+
+
+
+int main() {
+    int n;
+    cout << "Introduce el número de polinomios: ";
+    cin >> n;
+    cin.ignore(); // Ignorar el salto de línea después de la entrada de n
+    vector<vector<string>> polinomios;
+    leerNPolinomios(n, polinomios);
+    // Imprimir los vectores de monomios de cada polinomio
+    for (int i = 0; i < n; i++) {
+        cout << "\nPolinomio " << i+1 << ":" << endl;
+        for (auto monomio : polinomios[i]) {
+            cout << monomio << endl;
+        }
+    }
+    return 0;
+}
+
+
