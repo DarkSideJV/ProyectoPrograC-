@@ -1,0 +1,75 @@
+#include<iostream>
+#include <vector>
+using namespace std;
+//estructura
+struct tPolinomio {
+	int grado;
+	vector <double> coef;	 
+};
+//prototipos
+long float leer_coef (string termino);
+int leer_grado (string grado);
+vector<string> leerPolinomio(string polinomio);
+long float suma_poli(long float coef, int grado);
+
+int main(){
+	int N;
+	cout << "Ingrese el numero de polinomios que desea sumar: ";
+	cin >> N;
+	
+	
+	
+	return 0;
+}
+//funcion leer coeficiente
+long float leer_coef (string termino){
+
+	return coef;	
+}
+
+//funcion leer grado
+int leer_grado (string grado){
+	
+	return grado	
+}
+
+//sumar polinomios
+long float suma_poli(long float coef, int grado){
+	
+	return suma;
+}
+
+//leer el polinomio
+vector<string> leerPolinomio(string polinomio){
+	cout << "Introduce un polinomio: ";
+    
+	for(int i=1; i<=N; i++){
+			string cadena
+			cout << "Polinomio " << i << " : ";
+			getline(cin, cadena);
+		// Convertir a minúsculas
+    	transform(cadena.begin(), cadena.end(), cadena.begin(), [](unsigned char c){ return tolower(c); });
+
+    	// Eliminar espacios
+    	cadena.erase(remove_if(cadena.begin(), cadena.end(), [](char c) { return isspace(c); }), cadena.end());
+
+    	// Separar por comas y guardar en vector
+    	vector<string> partes;
+    	size_t pos = 0;
+    	while ((pos = cadena.find('+')) != string::npos) {
+        	string parte = cadena.substr(0, pos);
+        	partes.push_back(parte);
+        	cadena.erase(0, pos + 1);
+    	}
+    	partes.push_back(cadena);
+
+    	// Mostrar resultado
+    	cout << "Cadena convertida y separada por comas:" << endl;
+    	for (const auto& parte : partes) {
+        	cout << parte << endl;
+    }
+
+    return 0;	
+	}
+    
+}
